@@ -1,0 +1,32 @@
+# Change 'comments' to true for Disqus comments
+disqus:
+  comments: true
+  disqus_shortname: 'joselog'
+
+# If you are not using Google Analytics, please change 'google-ID' to an empty string
+google-ID: 'UA-168890700-1'
+
+menu:
+- {name: 'Home', path: '', url: 'index.html'}
+- {name: 'Archive', path: 'menu', url: 'archive.html'}
+- {name: 'About', path: 'menu', url: 'about.html'}
+
+# Available social icons are powered by Font Awesome, so you can use any icon that they offer
+social:
+- {icon: 'github', link: 'https://github.com/joselogreira/'}
+- {icon: 'twitter', link: 'https://twitter.com/joselogreira'}
+- {icon: 'linkedin', link: 'http://www.linkedin.com/in/jose-log/'}
+- {icon: 'envelope', link: 'mailto:jose.logreira@gmail.com'}
+# - {icon: 'rss-square', link: '/feed.xml'}
+# - {icon: 'rss-square', link: '/rss-feed.xml'}
+
+# Customize site text
+pagination:
+  next_page: 'Newer'
+  previous_page: 'Older'
+
+sharing_button_prompt: 'Feel free to share!'
+
+related_posts: 'You may also enjoy:'
+
+post_date_prefix: 'Written on'

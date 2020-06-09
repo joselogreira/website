@@ -1,4 +1,2 @@
 
-*.yml
-_config.yml
-index.md
+.jekyll-cache/*
