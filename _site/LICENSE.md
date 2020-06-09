@@ -1,5 +1,6 @@
 # The MIT License (MIT)
 
+Copyright (c) 2020 Jose Logreira
 Copyright (c) 2017 Paul Le
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Archive
-
+permalink: /archive/
 ---
 <ul class="posts">
   {% for post in site.posts %}

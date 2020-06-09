@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Jose Logreira - Electrical Engineer
+permalink: /about/
 ---
 
 **Hi!**
