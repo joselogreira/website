@@ -48,11 +48,11 @@
 <link rel="canonical" href="http://localhost:4000/nuvitron/nixie_tube_clock" />
 <meta property="og:url" content="http://localhost:4000/nuvitron/nixie_tube_clock" />
 <meta property="og:site_name" content="Project Logs" />
-<meta property="og:image" content="http://localhost:4000/circuit_front.png" />
+<meta property="og:image" content="http://localhost:4000/circuit_front.jpeg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-30T00:00:00-05:00" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"A Nixie Tube Clock Design","dateModified":"2020-06-30T00:00:00-05:00","datePublished":"2020-06-30T00:00:00-05:00","url":"http://localhost:4000/nuvitron/nixie_tube_clock","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/nuvitron/nixie_tube_clock"},"image":"http://localhost:4000/circuit_front.png","author":{"@type":"Person","name":"Jose Logreira"},"description":"Digital clocks are fun electronic projects. Add some 160V nixie tubes and you get an extra layer of vintage art.","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"A Nixie Tube Clock Design","dateModified":"2020-06-30T00:00:00-05:00","datePublished":"2020-06-30T00:00:00-05:00","url":"http://localhost:4000/nuvitron/nixie_tube_clock","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/nuvitron/nixie_tube_clock"},"image":"http://localhost:4000/circuit_front.jpeg","author":{"@type":"Person","name":"Jose Logreira"},"description":"Digital clocks are fun electronic projects. Add some 160V nixie tubes and you get an extra layer of vintage art.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -111,18 +111,18 @@
 </h1>
 
 
-  <img src="/assets/img/circuit_front.png">
+  <img src="/assets/img/circuit_front.jpeg">
 
 
 <p>Digital clocks are fun electronic projects. Add some 160V <a href="https://en.wikipedia.org/wiki/Nixie_tube">nixie tubes</a> and you get an extra layer of vintage art.</p>
 
-<p>I worked for <strong><a href="https://nuvitron.com">Nuvitron</a></strong> in the past, and I took part in the design and programming of their base circuit for the <a href="https://nuvitron.com/the-vintage-electronics-shop">Nixie Tube Clock lineup</a>. They were kind enough to allow me to document most of the things. This post is just a summary. I created a basic <a href="https://joselogreira.github.io/nixie_clock/">GitHub Page</a> for the project, and also all electronic design files are also on a <a href="https://github.com/joselogreira/nixie_clock">GitHub repo</a>.</p>
+<p>I worked for <strong><a href="https://nuvitron.com">Nuvitron</a></strong> in the past, and I took part in the design and programming of their base circuit for the <a href="https://nuvitron.com/the-vintage-electronics-shop">Nixie Tube Clock lineup</a>. They were kind enough to allow me to document most of the things. This post is just a summary. I created a <a href="https://joselogreira.github.io/nixie_clock/">GitHub Page</a> for the project, and also all electronic design files are also in a <a href="https://github.com/joselogreira/nixie_clock">GitHub repo</a>.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HfNS7TEvCeo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 
-<p>The clock uses the type <a href="http://www.tube-tester.com/sites/nixie/data/in-12a.htm">IN-12</a> tubes. There’re plenty of them on ebay. This clock has had three major iterations, with the one described being the last one. To this date, the production-version hardware has not changed, although I’ve done some firmware code refactoring. Learning better C programming techniques over time has made me realize that some of the code structure can still be improved, so it’s still open to changes.</p>
+<p>The clock uses the type <a href="http://www.tube-tester.com/sites/nixie/data/in-12a.htm">IN-12</a> tubes. There’re plenty of them on ebay. This clock has had three major iterations, with the one described being the last one. To this date, the production-version hardware has not changed, although I’ve done some firmware code refactoring. Learning better C programming techniques over time made me realize that some of the code structure can still be improved, so it’s still open to changes.</p>
 
-<p>Some of the interesting things about this nixie clock implementation</p>
+<p>Some of the interesting things about this nixie clock implementation are described below</p>
 
 <h2 id="small-pcb-footprint">Small PCB footprint</h2>
 
@@ -137,15 +137,38 @@
 
 <h2 id="no-external-rtc">No external RTC</h2>
 
-<p>It is common to find independent <a href="https://en.wikipedia.org/wiki/Real-time_clock">Real Time Clock</a> (RTC) chips to keep track of time. These chips have back-up battery so when external power is removed, the microcontroller shuts down but the RTC is still ON, consuming very little energy.</p>
+<p>It is common to find independent <a href="https://en.wikipedia.org/wiki/Real-time_clock">Real Time Clock</a> (RTC) chips to keep track of time. These chips have back-up battery so when external power is removed, the microcontroller shuts down but the RTC is still ON, with the advantage of consuming very little current (200mAh coin cell battery may last for a few years).</p>
 
 <p>This design uses the <a href="http://ww1.microchip.com/downloads/en/DeviceDoc/40001908A.pdf">ATmega324PB</a> microcontroller. It’s optimized for low power consumption. It runs at 2MHz clock (relatively slow frequency), and can operate down to 1.8V supply voltage. In addition, it includes an internal RTC as peripheral, which is basically a timer operating asynchronously with an external 32.768Hz quartz crystal. These characteristics allow to discard an external RTC and use the different <a href="https://joselogreira.github.io/nixie_clock/docs/sleep/">sleep modes</a> to keep track of time when there’s no external power (using a back-up battery, of course).</p>
 
 <p><img src="/assets/img/nc_mcu.jpg" alt="leds" /></p>
 
+<h2 id="factory-and-user-testing">Factory and user testing</h2>
+
+<p>A few batches of this circuit were produced. It was big enough to be willing to automate most of the testing, but small enought not to invest sophisticated hardware and software setups for testing. So, the in-between choice was to make use of some of the additional GPIO and memory of the MCU to desing a self-test mechanism: a way to measure system voltages, to estimate proper crystal frequencies and to easily test RGB LEDs and sounds.</p>
+
+<p>The circuit factory does not assemble the nixie tubes. That is a subsequent step during the clock assembly, so testing the tubes should also be part of the firmware, either for the clock assembler or the user.</p>
+
+<p>The factory self-test relies on the use of a USB-to-serial converter, to display test results on a PC virtual serial port terminal. It looks for three things:</p>
+<ul>
+  <li><strong>System voltages:</strong> Boost output voltage, input voltage, MCU voltage, boost controller voltage.</li>
+  <li><strong>Crystals timing:</strong> It uses the 16MHz ceramic resonator as a reference to measure the 32,768KHz quartz crystal precission.</li>
+  <li><strong>User feedback of LEDs and buzzer:</strong> It switches between all LED colours and asks the operator whether they are correctly displayed. Then it plays some musical notes and asks whether they are properly heard.</li>
+</ul>
+
+<p>The system isn’t fools’ proof, since it depends on operator feedback, but no doubt it’s better than doing no testing at all, or spending hundreds of dollars on specialized test equipment (remember, these were small production batches).</p>
+
+<p><img src="/assets/img/nc_testing.png" alt="NC testing" /></p>
+
+<p>Above is a screenshot of the voltages testing sequence, where all voltages are tested  three times, with the boost converter enabled and disabled. All test results are stored in internal EEPROM memory, so they can be later downloaded for further failure analysis or just tracking whether the circuits were properly tested or not.</p>
+
+<p>When the user or the clock assembler wants to test the nixie tubes and LEDs, a test sequence can be entered at start-up by pressing a button. It cycles through all the tubes’ digits and LED colors, so a visual inspection is straightforward. The image below shows the circuit performing that sequence.</p>
+
+<p><img src="/assets/img/nc_user_test.jpeg" alt="NC user test" /></p>
+
 <h2 id="low-power-consumption">Low power consumption</h2>
 
-<p>Nixie tubes require high voltage, but low power. Each tube’s digit consumes less than 2mA @ 160V. Besides, the <a href="https://joselogreira.github.io/nixie_clock/docs/multiplexing/">multiplexing</a> scheme allows for only one tube to be active at a time. Apart from the tubes, the full-on RGB LEDs are the other big consumers of current. Lab measurements show a maximum current consumption of 70mA @ 12V input voltage. <strong>That is, 0.84W!</strong>.</p>
+<p>Nixie tubes require high voltage, but low power. Each tube’s digit consumes less than 2mA @ 160V. Besides, the <a href="https://joselogreira.github.io/nixie_clock/docs/multiplexing/">multiplexing</a> scheme allows for only one tube to be active at a time. Apart from the tubes, the full-on RGB LEDs are the other big consumers of current. Lab measurements show a maximum current consumption of 70mA @ 12V input voltage. <strong>That is, 0.84W!</strong>. That makes me think that it could run out of a small lead-acid battery or something similar!, but that in itself is just another project.</p>
 
 
 <span class="post-date">
