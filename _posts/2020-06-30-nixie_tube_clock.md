@@ -12,6 +12,8 @@ Digital clocks are fun electronic projects. Add some 160V [nixie tubes](https://
 
 I worked for __[Nuvitron](https://nuvitron.com)__ in the past, and I took part in the design and programming of their base circuit for the [Nixie Tube Clock lineup](https://nuvitron.com/the-vintage-electronics-shop). They were kind enough to allow me to document most of the things. This post is just a summary. I created a basic [GitHub Page](https://joselogreira.github.io/nixie_clock/) for the project, and also all electronic design files are also on a [GitHub repo](https://github.com/joselogreira/nixie_clock).
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HfNS7TEvCeo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 The clock uses the type [IN-12](http://www.tube-tester.com/sites/nixie/data/in-12a.htm) tubes. There're plenty of them on ebay. This clock has had three major iterations, with the one described being the last one. To this date, the production-version hardware has not changed, although I've done some firmware code refactoring. Learning better C programming techniques over time has made me realize that some of the code structure can still be improved, so it's still open to changes.
 
 Some of the interesting things about this nixie clock implementation
@@ -37,4 +39,4 @@ This design uses the [ATmega324PB](http://ww1.microchip.com/downloads/en/DeviceD
 
 ## Low power consumption
 
-Nixie tubes require high voltage, but low power. Each tube's digit consumes less than 2mA @ 160V. Besides, the [multiplexing](https://joselogreira.github.io/nixie_clock/docs/multiplexing/) scheme allows for only one tube to be active at a time. Apart from the tubes, the full-on RGB LEDs are the other big consumers of current. Lab measurements show a maximum current consumption of 70mA @ 12V input voltage. __That is, 0.84W!__. 
+Nixie tubes require high voltage, but low power. Each tube's digit consumes less than 2mA @ 160V. Besides, the [multiplexing](https://joselogreira.github.io/nixie_clock/docs/multiplexing/) scheme allows for only one tube to be active at a time. Apart from the tubes, the full-on RGB LEDs are the other big consumers of current. Lab measurements show a maximum current consumption of 70mA @ 12V input voltage. __That is, 0.84W!__.
