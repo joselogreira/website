@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>
+    
+      A Nixie Tube Clock Design | Project Logs
+    
+  </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/syntax.css">
+  <!-- Use Atom -->
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Project Logs" />
+  <!-- Use RSS-2.0 -->
+  <!--<link href="/rss-feed.xml" type="application/rss+xml" rel="alternate" title="Project Logs | by Jose Logreira"/>
+  //-->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      });
+  </script>
+
+  
+
+  <!-- Use Jekyll SEO plugin -->
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>A Nixie Tube Clock Design | Project Logs</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="A Nixie Tube Clock Design" />
+<meta name="author" content="Jose Logreira" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Digital clocks are fun electronic projects. Add some 160V nixie tubes and you get an extra layer of vintage art." />
+<meta property="og:description" content="Digital clocks are fun electronic projects. Add some 160V nixie tubes and you get an extra layer of vintage art." />
+<link rel="canonical" href="http://localhost:4000/nuvitron/nixie_tube_clock" />
+<meta property="og:url" content="http://localhost:4000/nuvitron/nixie_tube_clock" />
+<meta property="og:site_name" content="Project Logs" />
+<meta property="og:image" content="http://localhost:4000/circuit_front.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-30T00:00:00-05:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"A Nixie Tube Clock Design","dateModified":"2020-06-30T00:00:00-05:00","datePublished":"2020-06-30T00:00:00-05:00","url":"http://localhost:4000/nuvitron/nixie_tube_clock","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/nuvitron/nixie_tube_clock"},"image":"http://localhost:4000/circuit_front.png","author":{"@type":"Person","name":"Jose Logreira"},"description":"Digital clocks are fun electronic projects. Add some 160V nixie tubes and you get an extra layer of vintage art.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+
+<body>
+
+  <div class="container">
+    <header class="masthead">
+  <h3 class="masthead-title">
+    <a href="/">Project Logs</a>
+    <small class="masthead-subtitle">by Jose Logreira</small>
+    <div class="menu">
+  <nav class="menu-content">
+    
+      <a href="">Home</a>
+  	
+      <a href="/archive/">Archive</a>
+  	
+      <a href="/about/">About</a>
+  	
+  </nav>
+  <nav class="social-icons">
+    
+  
+  
+    <a href="https://github.com/joselogreira/" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="https://twitter.com/joselogreira" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="http://www.linkedin.com/in/jose-log/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="mailto:jose.logreira@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+  
+
+  </nav>
+</div>
+
+  </h3>
+</header>
+
+
+    <div class="post-container">
+      <h1>
+  A Nixie Tube Clock Design
+</h1>
+
+
+  <img src="/assets/img/circuit_front.png">
+
+
+<p>Digital clocks are fun electronic projects. Add some 160V <a href="https://en.wikipedia.org/wiki/Nixie_tube">nixie tubes</a> and you get an extra layer of vintage art.</p>
+
+<p>I worked for <strong><a href="https://nuvitron.com">Nuvitron</a></strong> in the past, and I took part in the design and programming of their base circuit for the <a href="https://nuvitron.com/the-vintage-electronics-shop">Nixie Tube Clock lineup</a>. They were kind enough to allow me to document most of the things. This post is just a summary. I created a basic <a href="https://joselogreira.github.io/nixie_clock/">GitHub Page</a> for the project, and also all electronic design files are also on a <a href="https://github.com/joselogreira/nixie_clock">GitHub repo</a>.</p>
+
+<p>The clock uses the type <a href="http://www.tube-tester.com/sites/nixie/data/in-12a.htm">IN-12</a> tubes. There’re plenty of them on ebay. This clock has had three major iterations, with the one described being the last one. To this date, the production-version hardware has not changed, although I’ve done some firmware code refactoring. Learning better C programming techniques over time has made me realize that some of the code structure can still be improved, so it’s still open to changes.</p>
+
+<p>Some of the interesting things about this nixie clock implementation</p>
+
+<h2 id="small-pcb-footprint">Small PCB footprint</h2>
+
+<p>Main PCB is only 12.5 x 4.5cms. The only missing components are the three user buttons and power connector, all located in a small secondary board in the back of the clock. PCB was designed using <a href="https://kicad-pcb.org/">KiCAD</a>. Low voltage traces had a minimum separation of 8mils and high voltage traces, almost 24mils. Minimum footprints pitch is 0.5mm (the MCU pads). Most of the passive SMD components are 0603, all other components are bigger, so this allows the whole circuit to be hand-soldered with some practice and a regular chisel tip soldering iron.</p>
+
+<p><img src="/assets/img/pcb_front.png" alt="pcb front" />
+<img src="/assets/img/pcb_back.png" alt="pcb back" /></p>
+
+<p>It’s a double layer design, with most of the SMD components at the top, and only the RGB LEDs at the bottom to illuminate the tubes from their back to give nice background colours.</p>
+
+<p><img src="/assets/img/nc_leds.jpg" alt="leds" /></p>
+
+<h2 id="no-external-rtc">No external RTC</h2>
+
+<p>It is common to find independent <a href="https://en.wikipedia.org/wiki/Real-time_clock">Real Time Clock</a> (RTC) chips to keep track of time. These chips have back-up battery so when external power is removed, the microcontroller shuts down but the RTC is still ON, consuming very little energy.</p>
+
+<p>This design uses the <a href="http://ww1.microchip.com/downloads/en/DeviceDoc/40001908A.pdf">ATmega324PB</a> microcontroller. It’s optimized for low power consumption. It runs at 2MHz clock (relatively slow frequency), and can operate down to 1.8V supply voltage. In addition, it includes an internal RTC as peripheral, which is basically a timer operating asynchronously with an external 32.768Hz quartz crystal. These characteristics allow to discard an external RTC and use the different <a href="https://joselogreira.github.io/nixie_clock/docs/sleep/">sleep modes</a> to keep track of time when there’s no external power (using a back-up battery, of course).</p>
+
+<p><img src="/assets/img/nc_mcu.jpg" alt="leds" /></p>
+
+<h2 id="low-power-consumption">Low power consumption</h2>
+
+<p>Nixie tubes require high voltage, but low power. Each tube’s digit consumes less than 2mA @ 160V. Besides, the <a href="https://joselogreira.github.io/nixie_clock/docs/multiplexing/">multiplexing</a> scheme allows for only one tube to be active at a time. Apart from the tubes, the full-on RGB LEDs are the other big consumers of current. Lab measurements show a maximum current consumption of 70mA @ 12V input voltage. <strong>That is, 0.84W!</strong>.</p>
+
+
+<span class="post-date">
+  Written on
+  
+  June
+  30th,
+  2020
+  by
+  
+    Jose Logreira
+  
+</span>
+
+<div class="post-date">Feel free to share!</div>
+  <div class="sharing-icons">
+    <a href="https://twitter.com/intent/tweet?text=A Nixie Tube Clock Design&amp;url=/nuvitron/nixie_tube_clock" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=/nuvitron/nixie_tube_clock&amp;title=A Nixie Tube Clock Design" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  </div>
+</div>
+
+
+<div class="related">
+  <h1 >You may also enjoy:</h1>
+  
+  <ul class="related-posts">
+    
+      
+        
+        
+      
+    
+  </ul>
+</div>
+
+
+
+  <section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = "joselog";
+    var disqus_identifier = "/nuvitron/nixie_tube_clock";
+    (function() {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+    </div>
+
+    <footer class="footer">
+  
+  
+  
+    <a href="https://github.com/joselogreira/" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="https://twitter.com/joselogreira" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="http://www.linkedin.com/in/jose-log/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="mailto:jose.logreira@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+  
+
+  <div class="post-date">
+  	<a href="/menu/about.html">Project Logs | by Jose Logreira</a>
+  </div>
+</footer>
+
+  </div>
+
+</body>
+</html>
