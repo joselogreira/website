@@ -1,0 +1,313 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>
+    
+      Syncing YouTube and Spotify with Python | Project Logs
+    
+  </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/syntax.css">
+  <!-- Use Atom -->
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Project Logs" />
+  <!-- Use RSS-2.0 -->
+  <!--<link href="/rss-feed.xml" type="application/rss+xml" rel="alternate" title="Project Logs | by Jose Logreira"/>
+  //-->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      });
+  </script>
+
+  
+
+  <!-- Use Jekyll SEO plugin -->
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Syncing YouTube and Spotify with Python | Project Logs</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="Syncing YouTube and Spotify with Python" />
+<meta name="author" content="Jose Logreira" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I started learning Python until recent months (pandemic-given time). I gotta say it’s been fun and very interesting, considering my background in C language. One of the best ways to understand technology (or so I’ve been told) is by projects-based learning. So this is my first take with Python and REST APIs." />
+<meta property="og:description" content="I started learning Python until recent months (pandemic-given time). I gotta say it’s been fun and very interesting, considering my background in C language. One of the best ways to understand technology (or so I’ve been told) is by projects-based learning. So this is my first take with Python and REST APIs." />
+<link rel="canonical" href="http://localhost:4000/python/python_and_apis" />
+<meta property="og:url" content="http://localhost:4000/python/python_and_apis" />
+<meta property="og:site_name" content="Project Logs" />
+<meta property="og:image" content="http://localhost:4000/youtube_spotify_python/cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-06T00:00:00-05:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Syncing YouTube and Spotify with Python","dateModified":"2020-07-06T00:00:00-05:00","datePublished":"2020-07-06T00:00:00-05:00","url":"http://localhost:4000/python/python_and_apis","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/python/python_and_apis"},"image":"http://localhost:4000/youtube_spotify_python/cover.jpg","author":{"@type":"Person","name":"Jose Logreira"},"description":"I started learning Python until recent months (pandemic-given time). I gotta say it’s been fun and very interesting, considering my background in C language. One of the best ways to understand technology (or so I’ve been told) is by projects-based learning. So this is my first take with Python and REST APIs.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+
+<body>
+
+  <div class="container">
+    <header class="masthead">
+  <h3 class="masthead-title">
+    <a href="/">Project Logs</a>
+    <small class="masthead-subtitle">by Jose Logreira</small>
+    <div class="menu">
+  <nav class="menu-content">
+    
+      <a href="">Home</a>
+  	
+      <a href="/archive/">Archive</a>
+  	
+      <a href="/about/">About</a>
+  	
+  </nav>
+  <nav class="social-icons">
+    
+  
+  
+    <a href="https://github.com/joselogreira/" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="https://twitter.com/joselogreira" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="http://www.linkedin.com/in/jose-log/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="mailto:jose.logreira@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+  
+
+  </nav>
+</div>
+
+  </h3>
+</header>
+
+
+    <div class="post-container">
+      <h1>
+  Syncing YouTube and Spotify with Python
+</h1>
+
+
+  <img src="/assets/img/youtube_spotify_python/cover.jpg">
+
+
+<p>I started learning <a href="https://www.python.org/">Python</a> until recent months (pandemic-given time). I gotta say it’s been fun and very interesting, considering my background in C language. One of the best ways to understand technology (or so I’ve been told) is by projects-based learning. So this is my first take with Python and <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST APIs</a>.</p>
+
+<p>I saw a nice project video in <a href="https://www.youtube.com/channel/UC-bFgwL_kFKLZA60AiB-CCQ">The Come Up</a> YouTube channel. The idea is simple: Over time, you hit <strong><em>Like</em></strong> on many YouTube music videos, so after running a <strong>Python</strong> script, you’d be able to automatically create a <strong>Spotify</strong> playlist containing all the liked songs from YouTube. Below is the original project video. It also contains links to the original <a href="https://github.com/TheComeUpCode/SpotifyGeneratePlaylist">GitHub project</a>.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7J_qcttfnJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>The project was very appealing to me since it covers <a href="https://en.wikipedia.org/wiki/Web_API">web APIs</a>, a subject I knew nothing about, yet it is one of the most basic building blocks of web applications.</p>
+
+<p>I decided to make <a href="https://github.com/joselogreira/playlist_creator">my own version</a>. The codebase is completely new, although both projects use the same libraries (or Python modules). So the idea is for you to go watch the video, understand what’s going on, and then come here to understand what are the tweaks and additions I’ve made. Some of these are:</p>
+
+<ul>
+  <li>
+    <p><strong><em>Using <a href="https://www.sqlite.org/index.html">SQLite Databases</a>:</em></strong> SQL-based databases are a whole world in themselves, but I wanted to implement some basic database functionality. The database contains information about the YouTube <em>“liked”</em> playlist contents, the extracted video Artists and Tracks, and the Spotify IDs for each track. All the database manipulation is performed using the <a href="https://docs.python.org/2/library/sqlite3.html">SQLite python module</a>.</p>
+  </li>
+  <li>
+    <p><strong><em><a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/">Spotify OAuth2.0</a> Authentication:</em></strong> The <em>TheComeUp</em> project doesn’t implement <em>OAuth2.0</em> authorization, but it uses a manual process (using the <a href="https://developer.spotify.com/console/post-playlist-tracks/">Spotify Developer’s Console</a>) to grant access to a user account, where a valid <em>OAuth</em> token is generated. My project includes the required “<a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow">Authorization Code Flow</a>” for this step to be automated.</p>
+  </li>
+  <li>
+    <p><strong><em>Improved <a href="https://developers.google.com/youtube/v3/docs/playlists/list">YouTube Data API</a> implementation:</em></strong> Both projects use the same <a href="https://developers.google.com/youtube/v3/quickstart/python">library</a> for interaction with YouTube, but mine makes use of some extra API parameters that allow for more flexibility when requesting data, while saving on network traffic (after all, the YouTube Data API is NOT free). More specifically: no unused information is retrieved from YouTube, and the user can select the number of <em>liked</em> videos to download and sync (user can even download the whole <em>“liked”</em> history, which in my case is more than 800 videos).</p>
+  </li>
+  <li>
+    <p><strong><em>Execution switches:</em></strong> This just means that the user chooses whether to skip or execute certain steps. This greatly helps when debugging and also when testing different sections of the program.</p>
+  </li>
+  <li>
+    <p><strong><em>Support for subsequent script executions</em></strong>: When executing the script once, you’d expect to sync YouTube and Spotify playlists. When executing the script twice (or some time in the future) you’d expect the previous data not to be overwritten or downloaded again, but only to apply the new changes made between script executions. This project handles that.</p>
+  </li>
+  <li>
+    <p><strong><em>Error Handling:</em></strong> I’ve tried to handle most of the API-related formatting or data errors, by printing descriptive messages of the reasons the script might have failed. This is not the focus of the project, but certainly it is a good addition.</p>
+  </li>
+</ul>
+
+<h2 id="script-steps">Script Steps</h2>
+
+<p>Below is a general program flow. The script is executed on a command line application, and the user input is also read from the command line.</p>
+
+<h3 id="step-1-request-user-to-download-liked-videos-playlist-from-youtube">STEP 1: Request user to download <em>“liked”</em> videos playlist from Youtube.</h3>
+
+<p>The script opens a new browser window and the user is redirected to the Google <em>OAuth</em> authentication page. The user needs to grant access to the application (the script) so that it can read user data. Since this application is not verified by Google, it flags it as a safety risk. Nevertheless, the user can click on <em>“Advanced”</em> -&gt; <em>“Go to Playlist(unsafe)”</em>.</p>
+
+<p><img src="/assets/img/youtube_spotify_python/google_warning.jpg" alt="Google warning" /></p>
+
+<p>Then, the user is asked whether to grant permissions to view the YouTube account. Upon allowance, the browser window can now be closed, and program execution continues in the command line. Depending on the amount of videos to be retrieved, the application performs multiple requests to the API until receiving all the videos’ info (each response includes 50 videos maximum). In this case, 883 results were retrieved.</p>
+
+<p><img src="/assets/img/youtube_spotify_python/step1.jpg" alt="Step 1" /></p>
+
+<p>Each <a href="https://www.json.org/json-en.html">JSON</a>-formatted response is individually saved in a temporary file with <strong><em>.json</em></strong> extention</p>
+
+<h3 id="step-2-create-database-and-store-videos">STEP 2: Create database and store videos</h3>
+
+<p>Database object is immediately created (if non-existent) and initialized with three tables:</p>
+
+<ul>
+  <li><strong>videos:</strong> It stores the title string, video length, YouTube ID, and database ID fields.</li>
+  <li><strong>tracks:</strong> It stores the songs’ names, spotify IDs and database ID fields.</li>
+  <li><strong>artists:</strong> It stores the artists’ names, spotify IDs and database ID fields.</li>
+</ul>
+
+<p>Each temporary JSON file is read and the videos are stored in the database in the table called <strong><em>“videos”</em></strong>. These videos include music and non-music videos, that will later be filtered. Individual videos extracted from the JSON files are displayed in the console with its YouTube ID. Whenever a video is already stored in the database, it shows the <em>“Already Exists”</em> message.</p>
+
+<p><img src="/assets/img/youtube_spotify_python/step2.jpg" alt="Step 2" /></p>
+
+<h3 id="step-3-filter-videos-to-extract-only-songs">STEP 3: Filter videos to extract only songs</h3>
+
+<p>The YouTube video ID is used to search through the <a href="https://pypi.org/project/youtube_dl/">YoutubeDL</a> API, to extract the video <strong>artist</strong> and <strong>track</strong> name. If no artist nor track are found, the video is assumed not to be a song. Otherwise, the artist and song names are stored in the database tables <strong><em>“artist”</em></strong> and <strong><em>“tracks”</em></strong> respectively, and linked to the respective video in the <strong><em>“video”</em></strong> table using <em>primary</em> and <em>foreing</em> keys (in database jargon).</p>
+
+<p>In this step, messages from the API as well as from the script are printed in console.</p>
+
+<p><img src="/assets/img/youtube_spotify_python/step3.jpg" alt="Step 3" /></p>
+
+<h3 id="step-4-search-in-spotify-catalog">STEP 4: Search in Spotify catalog</h3>
+
+<p>Here, connection with the <a href="https://developer.spotify.com/documentation/web-api/reference/playlists/">Spotify API</a> is performed. Just as Google requested permissions for the application, in this step the user is redirected to a Spotify <em>OAuth</em> Authentication page, where user grants access for the application to read and write playlists. The API is used to search in the Spotify catalog and retrieve <em>Spotify IDs</em> as results of the query for each individual song. These IDs are also stored in the database.</p>
+
+<p><img src="/assets/img/youtube_spotify_python/step4.jpg" alt="Step 4" /></p>
+
+<p>Some songs may not be found, just because the artist or song strings found with YoutubeDL do not match. This is one of the drawbacks of this approach.</p>
+
+<h3 id="step-5-insert-all-songs-found-in-spotify-into-a-new-playlist">STEP 5: Insert all songs found in Spotify into a new playlist</h3>
+
+<p>All user playlists are downloaded and the script looks for the existence of a playlist named <strong><em>“Youtube Liked Vids”</em></strong>. If it exists, all the songs that were found to have a valid Spotify ID are now added to that playlist. If it doesn’t, the script creates it using the API, and adds all songs to the newly created playlist.</p>
+
+<p><img src="/assets/img/youtube_spotify_python/step5.jpg" alt="Step 5" /></p>
+
+<h2 id="youtubedl-is-not-perfect">YouTubeDL is not perfect</h2>
+
+<p>You can imagine that many YouTube videos have odd names, special characters or strange symbols and emojis, thus, the weakest part of the whole chain is the YoutubeDL search engine. In fact, mistakes do happen: either it gives wrong song names and artists, or it does not find song name nor artist for a given video. It all depends on how well formatted the video title is (and how the YoutubeDL algorithm works, which I have not stopped to evaluate).</p>
+
+<p>So the sad story is that these errors are to be fixed manually by deleting songs or adding missing ones. But hey! I just have to do it for a few of them, not for hundreds!. Besides, when running the script again in the future, the errors fixed are not lost. Data is not overwritten (unless the user deletes the database file).</p>
+
+<h2 id="learning-resources">Learning Resources:</h2>
+
+<p>For Python, I went through all the <a href="https://www.py4e.com/">Python For Everybody</a> series. It’s free, it’s all in YouTube, it makes part of a <a href="https://www.coursera.org/specializations/python">Coursera specialization</a>.</p>
+
+<p>Here’s the <a href="https://developers.google.com/youtube/v3/docs/playlists">Youtube Data API documentation</a>.</p>
+
+<p>Here’s the <a href="https://developer.spotify.com/documentation/web-api/reference/playlists/">Spotify API documentation</a></p>
+
+<p>For OAuth2.0 Authentication with Spotify, I took the <a href="https://spotipy.readthedocs.io/en/2.13.0/">Spotipy</a> Python module as a reference.</p>
+
+<p>This project is <a href="https://github.com/joselogreira/playlist_creator">hosted on GitHub</a> under MIT License.</p>
+
+<hr />
+
+<p>Finally, thanks to <a href="https://www.youtube.com/channel/UC-bFgwL_kFKLZA60AiB-CCQ">The Come Up</a> channel. It was great to find this project.</p>
+
+
+<span class="post-date">
+  Written on
+  
+  July
+  6th,
+  2020
+  by
+  
+    Jose Logreira
+  
+</span>
+
+<div class="post-date">Feel free to share!</div>
+  <div class="sharing-icons">
+    <a href="https://twitter.com/intent/tweet?text=Syncing YouTube and Spotify with Python&amp;url=/python/python_and_apis" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=/python/python_and_apis&amp;title=Syncing YouTube and Spotify with Python" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  </div>
+</div>
+
+
+<div class="related">
+  <h1 >You may also enjoy:</h1>
+  
+  <ul class="related-posts">
+    
+      
+        
+        
+      
+    
+      
+        
+        
+      
+    
+  </ul>
+</div>
+
+
+
+  <section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = "joselog";
+    var disqus_identifier = "/python/python_and_apis";
+    (function() {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+    </div>
+
+    <footer class="footer">
+  
+  
+  
+    <a href="https://github.com/joselogreira/" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="https://twitter.com/joselogreira" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="http://www.linkedin.com/in/jose-log/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+  
+
+  
+  
+    <a href="mailto:jose.logreira@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+  
+
+  <div class="post-date">
+  	<a href="/menu/about.html">Project Logs | by Jose Logreira</a>
+  </div>
+</footer>
+
+  </div>
+
+</body>
+</html>

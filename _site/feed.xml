@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-07-01T13:33:39-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Project Logs</title><subtitle>by Jose Logreira</subtitle><author><name>Jose Logreira</name></author><entry><title type="html">A Nixie Tube Clock Design</title><link href="http://localhost:4000/nuvitron/nixie_tube_clock" rel="alternate" type="text/html" title="A Nixie Tube Clock Design" /><published>2020-06-30T00:00:00-05:00</published><updated>2020-06-30T00:00:00-05:00</updated><id>http://localhost:4000/nuvitron/nixie_tube_clock</id><content type="html" xml:base="http://localhost:4000/nuvitron/nixie_tube_clock">&lt;p&gt;Digital clocks are fun electronic projects. Add some 160V &lt;a href=&quot;https://en.wikipedia.org/wiki/Nixie_tube&quot;&gt;nixie tubes&lt;/a&gt; and you get an extra layer of vintage art.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-07-06T21:37:00-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Project Logs</title><subtitle>by Jose Logreira</subtitle><author><name>Jose Logreira</name></author><entry><title type="html">Syncing YouTube and Spotify with Python</title><link href="http://localhost:4000/python/python_and_apis" rel="alternate" type="text/html" title="Syncing YouTube and Spotify with Python" /><published>2020-07-06T00:00:00-05:00</published><updated>2020-07-06T00:00:00-05:00</updated><id>http://localhost:4000/python/python_and_apis</id><content type="html" xml:base="http://localhost:4000/python/python_and_apis">&lt;p&gt;I started learning &lt;a href=&quot;https://www.python.org/&quot;&gt;Python&lt;/a&gt; until recent months (pandemic-given time). I gotta say it’s been fun and very interesting, considering my background in C language. One of the best ways to understand technology (or so I’ve been told) is by projects-based learning. So this is my first take with Python and &lt;a href=&quot;https://en.wikipedia.org/wiki/Representational_state_transfer&quot;&gt;REST APIs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I saw a nice project video in &lt;a href=&quot;https://www.youtube.com/channel/UC-bFgwL_kFKLZA60AiB-CCQ&quot;&gt;The Come Up&lt;/a&gt; YouTube channel. The idea is simple: Over time, you hit &lt;strong&gt;&lt;em&gt;Like&lt;/em&gt;&lt;/strong&gt; on many YouTube music videos, so after running a &lt;strong&gt;Python&lt;/strong&gt; script, you’d be able to automatically create a &lt;strong&gt;Spotify&lt;/strong&gt; playlist containing all the liked songs from YouTube. Below is the original project video. It also contains links to the original &lt;a href=&quot;https://github.com/TheComeUpCode/SpotifyGeneratePlaylist&quot;&gt;GitHub project&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/7J_qcttfnJA&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;The project was very appealing to me since it covers &lt;a href=&quot;https://en.wikipedia.org/wiki/Web_API&quot;&gt;web APIs&lt;/a&gt;, a subject I knew nothing about, yet it is one of the most basic building blocks of web applications.&lt;/p&gt;
+
+&lt;p&gt;I decided to make &lt;a href=&quot;https://github.com/joselogreira/playlist_creator&quot;&gt;my own version&lt;/a&gt;. The codebase is completely new, although both projects use the same libraries (or Python modules). So the idea is for you to go watch the video, understand what’s going on, and then come here to understand what are the tweaks and additions I’ve made. Some of these are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;Using &lt;a href=&quot;https://www.sqlite.org/index.html&quot;&gt;SQLite Databases&lt;/a&gt;:&lt;/em&gt;&lt;/strong&gt; SQL-based databases are a whole world in themselves, but I wanted to implement some basic database functionality. The database contains information about the YouTube &lt;em&gt;“liked”&lt;/em&gt; playlist contents, the extracted video Artists and Tracks, and the Spotify IDs for each track. All the database manipulation is performed using the &lt;a href=&quot;https://docs.python.org/2/library/sqlite3.html&quot;&gt;SQLite python module&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://developer.spotify.com/documentation/general/guides/authorization-guide/&quot;&gt;Spotify OAuth2.0&lt;/a&gt; Authentication:&lt;/em&gt;&lt;/strong&gt; The &lt;em&gt;TheComeUp&lt;/em&gt; project doesn’t implement &lt;em&gt;OAuth2.0&lt;/em&gt; authorization, but it uses a manual process (using the &lt;a href=&quot;https://developer.spotify.com/console/post-playlist-tracks/&quot;&gt;Spotify Developer’s Console&lt;/a&gt;) to grant access to a user account, where a valid &lt;em&gt;OAuth&lt;/em&gt; token is generated. My project includes the required “&lt;a href=&quot;https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow&quot;&gt;Authorization Code Flow&lt;/a&gt;” for this step to be automated.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;Improved &lt;a href=&quot;https://developers.google.com/youtube/v3/docs/playlists/list&quot;&gt;YouTube Data API&lt;/a&gt; implementation:&lt;/em&gt;&lt;/strong&gt; Both projects use the same &lt;a href=&quot;https://developers.google.com/youtube/v3/quickstart/python&quot;&gt;library&lt;/a&gt; for interaction with YouTube, but mine makes use of some extra API parameters that allow for more flexibility when requesting data, while saving on network traffic (after all, the YouTube Data API is NOT free). More specifically: no unused information is retrieved from YouTube, and the user can select the number of &lt;em&gt;liked&lt;/em&gt; videos to download and sync (user can even download the whole &lt;em&gt;“liked”&lt;/em&gt; history, which in my case is more than 800 videos).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;Execution switches:&lt;/em&gt;&lt;/strong&gt; This just means that the user chooses whether to skip or execute certain steps. This greatly helps when debugging and also when testing different sections of the program.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;Support for subsequent script executions&lt;/em&gt;&lt;/strong&gt;: When executing the script once, you’d expect to sync YouTube and Spotify playlists. When executing the script twice (or some time in the future) you’d expect the previous data not to be overwritten or downloaded again, but only to apply the new changes made between script executions. This project handles that.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;Error Handling:&lt;/em&gt;&lt;/strong&gt; I’ve tried to handle most of the API-related formatting or data errors, by printing descriptive messages of the reasons the script might have failed. This is not the focus of the project, but certainly it is a good addition.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;script-steps&quot;&gt;Script Steps&lt;/h2&gt;
+
+&lt;p&gt;Below is a general program flow. The script is executed on a command line application, and the user input is also read from the command line.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1-request-user-to-download-liked-videos-playlist-from-youtube&quot;&gt;STEP 1: Request user to download &lt;em&gt;“liked”&lt;/em&gt; videos playlist from Youtube.&lt;/h3&gt;
+
+&lt;p&gt;The script opens a new browser window and the user is redirected to the Google &lt;em&gt;OAuth&lt;/em&gt; authentication page. The user needs to grant access to the application (the script) so that it can read user data. Since this application is not verified by Google, it flags it as a safety risk. Nevertheless, the user can click on &lt;em&gt;“Advanced”&lt;/em&gt; -&amp;gt; &lt;em&gt;“Go to Playlist(unsafe)”&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/youtube_spotify_python/google_warning.jpg&quot; alt=&quot;Google warning&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, the user is asked whether to grant permissions to view the YouTube account. Upon allowance, the browser window can now be closed, and program execution continues in the command line. Depending on the amount of videos to be retrieved, the application performs multiple requests to the API until receiving all the videos’ info (each response includes 50 videos maximum). In this case, 883 results were retrieved.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/youtube_spotify_python/step1.jpg&quot; alt=&quot;Step 1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Each &lt;a href=&quot;https://www.json.org/json-en.html&quot;&gt;JSON&lt;/a&gt;-formatted response is individually saved in a temporary file with &lt;strong&gt;&lt;em&gt;.json&lt;/em&gt;&lt;/strong&gt; extention&lt;/p&gt;
+
+&lt;h3 id=&quot;step-2-create-database-and-store-videos&quot;&gt;STEP 2: Create database and store videos&lt;/h3&gt;
+
+&lt;p&gt;Database object is immediately created (if non-existent) and initialized with three tables:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;videos:&lt;/strong&gt; It stores the title string, video length, YouTube ID, and database ID fields.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;tracks:&lt;/strong&gt; It stores the songs’ names, spotify IDs and database ID fields.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;artists:&lt;/strong&gt; It stores the artists’ names, spotify IDs and database ID fields.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each temporary JSON file is read and the videos are stored in the database in the table called &lt;strong&gt;&lt;em&gt;“videos”&lt;/em&gt;&lt;/strong&gt;. These videos include music and non-music videos, that will later be filtered. Individual videos extracted from the JSON files are displayed in the console with its YouTube ID. Whenever a video is already stored in the database, it shows the &lt;em&gt;“Already Exists”&lt;/em&gt; message.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/youtube_spotify_python/step2.jpg&quot; alt=&quot;Step 2&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;step-3-filter-videos-to-extract-only-songs&quot;&gt;STEP 3: Filter videos to extract only songs&lt;/h3&gt;
+
+&lt;p&gt;The YouTube video ID is used to search through the &lt;a href=&quot;https://pypi.org/project/youtube_dl/&quot;&gt;YoutubeDL&lt;/a&gt; API, to extract the video &lt;strong&gt;artist&lt;/strong&gt; and &lt;strong&gt;track&lt;/strong&gt; name. If no artist nor track are found, the video is assumed not to be a song. Otherwise, the artist and song names are stored in the database tables &lt;strong&gt;&lt;em&gt;“artist”&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;“tracks”&lt;/em&gt;&lt;/strong&gt; respectively, and linked to the respective video in the &lt;strong&gt;&lt;em&gt;“video”&lt;/em&gt;&lt;/strong&gt; table using &lt;em&gt;primary&lt;/em&gt; and &lt;em&gt;foreing&lt;/em&gt; keys (in database jargon).&lt;/p&gt;
+
+&lt;p&gt;In this step, messages from the API as well as from the script are printed in console.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/youtube_spotify_python/step3.jpg&quot; alt=&quot;Step 3&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;step-4-search-in-spotify-catalog&quot;&gt;STEP 4: Search in Spotify catalog&lt;/h3&gt;
+
+&lt;p&gt;Here, connection with the &lt;a href=&quot;https://developer.spotify.com/documentation/web-api/reference/playlists/&quot;&gt;Spotify API&lt;/a&gt; is performed. Just as Google requested permissions for the application, in this step the user is redirected to a Spotify &lt;em&gt;OAuth&lt;/em&gt; Authentication page, where user grants access for the application to read and write playlists. The API is used to search in the Spotify catalog and retrieve &lt;em&gt;Spotify IDs&lt;/em&gt; as results of the query for each individual song. These IDs are also stored in the database.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/youtube_spotify_python/step4.jpg&quot; alt=&quot;Step 4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Some songs may not be found, just because the artist or song strings found with YoutubeDL do not match. This is one of the drawbacks of this approach.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-5-insert-all-songs-found-in-spotify-into-a-new-playlist&quot;&gt;STEP 5: Insert all songs found in Spotify into a new playlist&lt;/h3&gt;
+
+&lt;p&gt;All user playlists are downloaded and the script looks for the existence of a playlist named &lt;strong&gt;&lt;em&gt;“Youtube Liked Vids”&lt;/em&gt;&lt;/strong&gt;. If it exists, all the songs that were found to have a valid Spotify ID are now added to that playlist. If it doesn’t, the script creates it using the API, and adds all songs to the newly created playlist.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/youtube_spotify_python/step5.jpg&quot; alt=&quot;Step 5&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;youtubedl-is-not-perfect&quot;&gt;YouTubeDL is not perfect&lt;/h2&gt;
+
+&lt;p&gt;You can imagine that many YouTube videos have odd names, special characters or strange symbols and emojis, thus, the weakest part of the whole chain is the YoutubeDL search engine. In fact, mistakes do happen: either it gives wrong song names and artists, or it does not find song name nor artist for a given video. It all depends on how well formatted the video title is (and how the YoutubeDL algorithm works, which I have not stopped to evaluate).&lt;/p&gt;
+
+&lt;p&gt;So the sad story is that these errors are to be fixed manually by deleting songs or adding missing ones. But hey! I just have to do it for a few of them, not for hundreds!. Besides, when running the script again in the future, the errors fixed are not lost. Data is not overwritten (unless the user deletes the database file).&lt;/p&gt;
+
+&lt;h2 id=&quot;learning-resources&quot;&gt;Learning Resources:&lt;/h2&gt;
+
+&lt;p&gt;For Python, I went through all the &lt;a href=&quot;https://www.py4e.com/&quot;&gt;Python For Everybody&lt;/a&gt; series. It’s free, it’s all in YouTube, it makes part of a &lt;a href=&quot;https://www.coursera.org/specializations/python&quot;&gt;Coursera specialization&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s the &lt;a href=&quot;https://developers.google.com/youtube/v3/docs/playlists&quot;&gt;Youtube Data API documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s the &lt;a href=&quot;https://developer.spotify.com/documentation/web-api/reference/playlists/&quot;&gt;Spotify API documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For OAuth2.0 Authentication with Spotify, I took the &lt;a href=&quot;https://spotipy.readthedocs.io/en/2.13.0/&quot;&gt;Spotipy&lt;/a&gt; Python module as a reference.&lt;/p&gt;
+
+&lt;p&gt;This project is &lt;a href=&quot;https://github.com/joselogreira/playlist_creator&quot;&gt;hosted on GitHub&lt;/a&gt; under MIT License.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Finally, thanks to &lt;a href=&quot;https://www.youtube.com/channel/UC-bFgwL_kFKLZA60AiB-CCQ&quot;&gt;The Come Up&lt;/a&gt; channel. It was great to find this project.&lt;/p&gt;</content><author><name>Jose Logreira</name></author><category term="api" /><category term="python" /><summary type="html">I started learning Python until recent months (pandemic-given time). I gotta say it’s been fun and very interesting, considering my background in C language. One of the best ways to understand technology (or so I’ve been told) is by projects-based learning. So this is my first take with Python and REST APIs.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/youtube_spotify_python/cover.jpg" /><media:content medium="image" url="http://localhost:4000/youtube_spotify_python/cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A Nixie Tube Clock Design</title><link href="http://localhost:4000/nuvitron/nixie_tube_clock" rel="alternate" type="text/html" title="A Nixie Tube Clock Design" /><published>2020-06-30T00:00:00-05:00</published><updated>2020-06-30T00:00:00-05:00</updated><id>http://localhost:4000/nuvitron/nixie_tube_clock</id><content type="html" xml:base="http://localhost:4000/nuvitron/nixie_tube_clock">&lt;p&gt;Digital clocks are fun electronic projects. Add some 160V &lt;a href=&quot;https://en.wikipedia.org/wiki/Nixie_tube&quot;&gt;nixie tubes&lt;/a&gt; and you get an extra layer of vintage art.&lt;/p&gt;
 
 &lt;p&gt;I worked for &lt;strong&gt;&lt;a href=&quot;https://nuvitron.com&quot;&gt;Nuvitron&lt;/a&gt;&lt;/strong&gt; in the past, and I took part in the design and programming of their base circuit for the &lt;a href=&quot;https://nuvitron.com/the-vintage-electronics-shop&quot;&gt;Nixie Tube Clock lineup&lt;/a&gt;. They were kind enough to allow me to document most of the things. This post is just a summary. I created a &lt;a href=&quot;https://joselogreira.github.io/nixie_clock/&quot;&gt;GitHub Page&lt;/a&gt; for the project, and also all electronic design files are also in a &lt;a href=&quot;https://github.com/joselogreira/nixie_clock&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
 

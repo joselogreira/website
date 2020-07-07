@@ -7,6 +7,20 @@
 		<atom:link href="/rss-feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Syncing YouTube and Spotify with Python</title>
+				
+					<dc:creator>Jose Logreira</dc:creator>
+				
+				
+					<description>&lt;p&gt;I started learning &lt;a href=&quot;https://www.python.org/&quot;&gt;Python&lt;/a&gt; until recent months (pandemic-given time). I gotta say it’s been fun and very interesting, considering my background in C language. One of the best ways to understand technology (or so I’ve been told) is by projects-based learning. So this is my first take with Python and &lt;a href=&quot;https://en.wikipedia.org/wiki/Representational_state_transfer&quot;&gt;REST APIs&lt;/a&gt;.&lt;/p&gt;
+</description>
+				
+				<pubDate>Mon, 06 Jul 2020 00:00:00 -0500</pubDate>
+				<link>http://localhost:4000/python/python_and_apis</link>
+				<guid isPermaLink="true">http://localhost:4000/python/python_and_apis</guid>
+			</item>
+		
+			<item>
 				<title>A Nixie Tube Clock Design</title>
 				
 					<dc:creator>Jose Logreira</dc:creator>
